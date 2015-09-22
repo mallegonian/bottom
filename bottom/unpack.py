@@ -92,9 +92,16 @@ for numeric, string in [
     ("262", "RPL_TRACEEND"),
     ("211", "RPL_STATSLINKINFO"),
     ("212", "RPL_STATSCOMMANDS"),
+    ("213", "RPL_STATSCLINE"),
+    ("214", "RPL_STATSNLINE"),
+    ("215", "RPL_STATSILINE"),
+    ("216", "RPL_STATSKLINE"),
+    ("218", "RPL_STATSYLINE"),
     ("219", "RPL_ENDOFSTATS"),
+    ("241", "RPL_STATSLLINE"),
     ("242", "RPL_STATSUPTIME"),
     ("243", "RPL_STATSOLINE"),
+    ("244", "RPL_STATSHLINE"),
     ("221", "RPL_UMODEIS"),
     ("234", "RPL_SERVLIST"),
     ("235", "RPL_SERVLISTEND"),
@@ -241,7 +248,7 @@ def unpack_command(msg):
 
     elif command in ["RPL_MOTDSTART", "RPL_MOTD", "RPL_ENDOFMOTD",
                      "RPL_WELCOME", "RPL_YOURHOST", "RPL_CREATED",
-                     "RPL_LUSERCLIENT", "RPL_LUSERME"]:
+                     "RPL_LUSERCLIENT", "RPL_LUSERME", "RPL_USERHOST"]:
         kwargs["message"] = params[-1]
 
     elif command in ["RPL_LUSEROP", "RPL_LUSERUNKNOWN", "RPL_LUSERCHANNELS"]:
@@ -296,7 +303,7 @@ def parameters(command):
 
     elif command in ["RPL_MOTDSTART", "RPL_MOTD", "RPL_ENDOFMOTD",
                      "RPL_WELCOME", "RPL_YOURHOST", "RPL_CREATED",
-                     "RPL_LUSERCLIENT", "RPL_LUSERME"]:
+                     "RPL_LUSERCLIENT", "RPL_LUSERME", "RPL_USERHOST"]:
         params.append("message")
 
     elif command in ["RPL_LUSEROP", "RPL_LUSERUNKNOWN", "RPL_LUSERCHANNELS"]:

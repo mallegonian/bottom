@@ -1,5 +1,6 @@
 import asyncio
 from . import unpack
+from .log import logger
 
 
 class Connection(object):
@@ -45,7 +46,7 @@ class Connection(object):
                 try:
                     event, kwargs = unpack.unpack_command(msg)
                 except ValueError:
-                    print("PARSE ERROR {}".format(msg))
+                    logger.info("PARSE ERROR {}".format(msg))
                 else:
                     yield from self.events.trigger(event, **kwargs)
             else:
@@ -54,6 +55,7 @@ class Connection(object):
 
     def send(self, msg):
         if self.writer:
+            logger.debug("Sent %s", repr(msg))
             self.writer.write((msg.strip() + '\n').encode(self.encoding))
 
     @asyncio.coroutine
@@ -62,6 +64,7 @@ class Connection(object):
             return ''
         try:
             msg = yield from self.reader.readline()
+            logger.debug("Recieved %s", repr(msg))
             return msg.decode(self.encoding, 'ignore').strip()
         except EOFError:
             return ''

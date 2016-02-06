@@ -787,21 +787,29 @@ These commands are received from the server, or dispatched using `Client.trigger
 
 For sending commands, see [`Supported Commands`](#supported-commands) above.
 
-* PING
-* JOIN
-* PART
-* PRIVMSG
-* NOTICE
-* RPL_WELCOME (001)
-* RPL_YOURHOST (002)
-* RPL_CREATED (003)
-* RPL_MYINFO (004)
-* RPL_BOUNCE (005)
-* RPL_MOTDSTART (375)
-* RPL_MOTD (372)
-* RPL_ENDOFMOTD (376)
-* RPL_LUSERCLIENT (251)
-* RPL_LUSERME (255)
-* RPL_LUSEROP (252)
-* RPL_LUSERUNKNOWN (253)
-* RPL_LUSERCHANNELS (254)
+* CLIENT_CONNECT (host, port)
+* CLIENT_DISCONNECT (host, port)
+* PING (message)
+* JOIN (nick, user, host, channel)
+* PART (nick, user, host, channel, message)
+* QUIT (nick, user, host, message)
+* PRIVMSG (nick, user, host, target, message)
+* NOTICE (nick, user, host, target, message)
+* RPL_WELCOME (001) (message)
+* RPL_YOURHOST (002) (message)
+* RPL_CREATED (003) (message)
+* RPL_MYINFO (004) (info, message)
+* RPL_BOUNCE (005) (info, message)
+* RPL_USERHOST (302) (message)
+* RPL_NOTOPIC (331) (channel, message)
+* RPL_TOPIC (332) (channel, message)
+* RPL_ENDOFNAMES (366) (channel, message)
+* RPL_MOTDSTART (375) (message)
+* RPL_MOTD (372) (message)
+* RPL_ENDOFMOTD (376) (message)
+* RPL_LUSERCLIENT (251) (message)
+* RPL_LUSERME (255) (message)
+* RPL_LUSEROP (252) (count, message)
+* RPL_LUSERUNKNOWN (253) (count, message)
+* RPL_LUSERCHANNELS (254) (count, message)
+* ERR_NOMOTD (422) (message)
